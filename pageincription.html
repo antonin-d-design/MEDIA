@@ -137,78 +137,8 @@
         }
     </style>
     
-    <script type="module">
-        // Importation des fonctions nécessaires de Firebase
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
-
-        // Étape 2 : VOTRE CONFIGURATION FIREBASE (REMPLACEZ LES PLACEHOLDERS)
-        const firebaseConfig = {
-            apiKey: "AIzaSyCvpCL_nAThuD5CXfY0_gMG3Xg3zUDH4YU",
-            authDomain: "tactics-arena-5083a.firebaseapp.com",
-            projectId: "tactics-arena-5083a",
-            storageBucket: "tactics-arena-5083a.firebasestorage.app",
-            messagingSenderId: "362719849853",
-            appId: "1:362719849853:web:c954876eb249b3f1813014",
-        };
-
-        // Initialisation de Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        
-        // Ciblages des éléments du DOM
-        const registrationForm = document.getElementById('registration-form');
-        const emailInput = document.getElementById('email');
-        const passwordInput = document.getElementById('password');
-        const confirmPasswordInput = document.getElementById('confirm-password');
-        const messageDiv = document.getElementById('auth-message');
-
-        // Fonction pour gérer la soumission du formulaire
-        registrationForm.addEventListener('submit', (e) => {
-            e.preventDefault(); // Empêche l'envoi classique du formulaire (qui causerait l'erreur 404)
-            messageDiv.textContent = ''; // Efface les anciens messages
-
-            const email = emailInput.value;
-            const password = passwordInput.value;
-            const confirmPassword = confirmPasswordInput.value;
-
-            if (password !== confirmPassword) {
-                messageDiv.textContent = "Erreur : Les mots de passe ne correspondent pas.";
-                return;
-            }
-
-            // Appel de la fonction de création de compte de Firebase
-            createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    // Le compte a été créé avec succès
-                    const user = userCredential.user;
-                    messageDiv.style.color = 'green';
-                    messageDiv.textContent = `Compte créé avec succès pour ${user.email} ! Redirection...`;
-                    
-                    // Optionnel : Rediriger l'utilisateur vers la page d'accueil ou de connexion
-                    setTimeout(() => {
-                         window.location.href = 'pagedeconnexion.html'; 
-                    }, 2000); 
-                })
-                .catch((error) => {
-                    // Une erreur s'est produite
-                    messageDiv.style.color = '#FF4500';
-                    let errorMessage = error.message;
-
-                    // Traduction des erreurs courantes de Firebase pour l'utilisateur
-                    if (error.code === 'auth/email-already-in-use') {
-                        errorMessage = "Cet e-mail est déjà utilisé par un autre compte.";
-                    } else if (error.code === 'auth/invalid-email') {
-                        errorMessage = "L'adresse e-mail n'est pas valide.";
-                    } else if (error.code === 'auth/weak-password') {
-                        errorMessage = "Le mot de passe doit contenir au moins 6 caractères.";
-                    }
-                    
-                    messageDiv.textContent = `Erreur : ${errorMessage}`;
-                });
-        });
-
-    </script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 </head>
 <body>
 
@@ -245,7 +175,76 @@
         
     </div>
 
+    <script>
+        // Votre configuration Firebase correcte
+        const firebaseConfig = {
+            apiKey: "AIzaSyCvpCL_nAThuD5CXfY0_gMG3Xg3zUDH4YU",
+            authDomain: "tactics-arena-5083a.firebaseapp.com",
+            projectId: "tactics-arena-5083a",
+            storageBucket: "tactics-arena-5083a.firebasestorage.app",
+            messagingSenderId: "362719849853",
+            appId: "1:362719849853:web:c954876eb249b3f1813014",
+        };
+
+        // Initialisation du service Firebase (v8)
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = app.auth(); // Utilisation de app.auth() du SDK v8
+        
+        // Ciblages des éléments du DOM
+        const registrationForm = document.getElementById('registration-form');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirm-password');
+        const messageDiv = document.getElementById('auth-message');
+
+        // Fonction pour gérer la soumission du formulaire
+        registrationForm.addEventListener('submit', (e) => {
+            e.preventDefault(); 
+            messageDiv.textContent = ''; 
+            messageDiv.style.color = '#FF4500';
+
+            const email = emailInput.value;
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+
+            if (password !== confirmPassword) {
+                messageDiv.textContent = "Erreur : Les mots de passe ne correspondent pas.";
+                return;
+            }
+
+            // Appel de la fonction de création de compte de Firebase (v8)
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Succès
+                    const user = userCredential.user;
+                    messageDiv.style.color = 'green';
+                    messageDiv.textContent = `Compte créé avec succès pour ${user.email} ! Redirection...`;
+                    
+                    // Rediriger l'utilisateur après 2 secondes
+                    setTimeout(() => {
+                         window.location.href = 'pagedeconnexion.html'; 
+                    }, 2000); 
+                })
+                .catch((error) => {
+                    // Échec
+                    let errorMessage = error.message;
+
+                    // Traduction des erreurs courantes
+                    if (error.code === 'auth/email-already-in-use') {
+                        errorMessage = "Cet e-mail est déjà utilisé par un autre compte.";
+                    } else if (error.code === 'auth/invalid-email') {
+                        errorMessage = "L'adresse e-mail n'est pas valide.";
+                    } else if (error.code === 'auth/weak-password') {
+                        errorMessage = "Le mot de passe doit contenir au moins 6 caractères.";
+                    }
+                    
+                    messageDiv.textContent = `Erreur : ${errorMessage}`;
+                });
+        });
+
+    </script>
 </body>
 </html>
+
 
 
