@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
+        /* ... VOTRE STYLE CSS PRÉCÉDENT ... */
         :root {
             --color-primary: #FFFFFF; 
             --color-secondary: #FF4500; /* Votre orange */
@@ -68,7 +69,7 @@
 
         .main-nav {
             display: flex;
-            gap: 5px; /* Rapproche les boutons (était 20px) */
+            gap: 5px; 
             flex-grow: 1; 
             justify-content: center;
         }
@@ -77,15 +78,14 @@
             text-decoration: none; 
             color: var(--color-text-dark);
             font-weight: 700;
-            padding: 15px 15px; /* Réduit le padding pour compenser le rapprochement */
+            padding: 15px 15px; 
             font-size: 1.1rem;
             transition: color 0.3s ease, transform 0.3s ease;
         }
         
-        /* NOUVELLE ANIMATION DE SURVOL demandée : Texte orange et grossissement léger (scale), sans encadrement ni fond */
         .nav-button:hover {
-            color: var(--color-secondary); /* Texte en orange */
-            transform: scale(1.05); /* L'élément grandit légèrement */
+            color: var(--color-secondary); 
+            transform: scale(1.05); 
         }
         
         .header-cta-container {
@@ -124,7 +124,6 @@
             box-shadow: 0 5px 15px rgba(255, 69, 0, 0.4);
         }
         
-        /* [ ... CSS pour Hero Section et Cards ... ] */
         .hero-section {
             display: flex;
             flex-direction: column;
@@ -198,29 +197,27 @@
             width: 100%;
         }
 
-        /* --- DÉBUT : NOUVEAU CSS POUR LES CARTES --- */
         .card {
             flex: 1;
             background-color: var(--color-primary);
-            padding: 40px; /* Agrandit le padding pour une carte plus grande */
-            border-radius: 15px; /* Arrondi plus prononcé */
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); /* Ombre plus marquée */
-            border: 2px solid #e0e0e0; /* Bordure plus visible */
+            padding: 40px; 
+            border-radius: 15px; 
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); 
+            border: 2px solid #e0e0e0; 
             transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease, background-color 0.4s ease;
             text-align: center;
             position: relative;
-            overflow: hidden; /* Pour l'effet de bordure animée */
-            opacity: 0; /* Initialement invisible pour l'animation d'apparition */
-            transform: translateY(30px); /* Décalé vers le bas pour l'animation */
+            overflow: hidden; 
+            opacity: 0; 
+            transform: translateY(30px); 
         }
 
         .card:hover {
-            transform: translateY(-10px) scale(1.03); /* S'agrandit légèrement et se soulève */
-            box-shadow: 0 15px 45px rgba(255, 69, 0, 0.3); /* Ombre orange au survol */
-            border-color: var(--color-secondary); /* Bordure orange au survol */
+            transform: translateY(-10px) scale(1.03); 
+            box-shadow: 0 15px 45px rgba(255, 69, 0, 0.3); 
+            border-color: var(--color-secondary); 
         }
         
-        /* Effet de bordure animée (peut être retiré si trop complexe) */
         .card::before {
             content: '';
             position: absolute;
@@ -229,29 +226,29 @@
             right: 0;
             bottom: 0;
             border-radius: 15px;
-            border: 2px solid transparent; /* Bordure transparente par défaut */
+            border: 2px solid transparent; 
             transition: border-color 0.4s ease;
-            pointer-events: none; /* Empêche de bloquer les interactions avec le contenu de la carte */
+            pointer-events: none; 
         }
 
         .card:hover::before {
-            border-color: var(--color-secondary); /* Devient orange au survol */
+            border-color: var(--color-secondary); 
         }
 
         .card-icon {
-            font-size: 3.5rem; /* Agrandit l'icône */
+            font-size: 3.5rem; 
             margin-bottom: 20px;
-            color: var(--color-secondary); /* Couleur orange pour l'icône */
+            color: var(--color-secondary); 
             display: inline-block;
-            transition: transform 0.3s ease; /* Animation icône */
+            transition: transform 0.3s ease; 
         }
 
         .card:hover .card-icon {
-            transform: scale(1.2) rotate(5deg); /* L'icône tourne et s'agrandit légèrement au survol */
+            transform: scale(1.2) rotate(5deg); 
         }
 
         .card h3 {
-            font-size: 1.8rem; /* Agrandit le titre */
+            font-size: 1.8rem; 
             margin-bottom: 15px;
             font-weight: 700;
             color: var(--color-text-dark);
@@ -259,16 +256,15 @@
         }
 
         .card:hover h3 {
-            color: var(--color-secondary); /* Titre en orange au survol */
+            color: var(--color-secondary); 
         }
 
         .card p {
-            font-size: 1.1rem; /* Agrandit le texte */
+            font-size: 1.1rem; 
             color: #555;
             line-height: 1.7;
         }
 
-        /* Animation d'apparition des cartes */
         @keyframes cardFadeInUp {
             from {
                 opacity: 0;
@@ -280,11 +276,9 @@
             }
         }
 
-        /* Appliquer l'animation avec un délai pour chaque carte */
         .card:nth-child(1) { animation: cardFadeInUp 0.7s ease-out forwards; animation-delay: 0.2s; }
         .card:nth-child(2) { animation: cardFadeInUp 0.7s ease-out forwards; animation-delay: 0.4s; }
         .card:nth-child(3) { animation: cardFadeInUp 0.7s ease-out forwards; animation-delay: 0.6s; }
-        /* --- FIN : NOUVEAU CSS POUR LES CARTES --- */
 
         .site-footer {
             background-color: var(--color-secondary); 
@@ -325,8 +319,7 @@
             <a href="./news.html" class="nav-button">News</a>
             <a href="./wiki.html" class="nav-button">Wiki</a>
             <a href="./recrutement.html" class="nav-button">Recrutement</a>
-            <a href="./cgu.html" class="nav-button">CGU</a> 
-        </nav>
+            </nav>
         <div class="header-cta-container">
             <a href="./pagedeconnexion.html" class="login-btn">Connexion</a> 
             <a href="./pageincription.html" class="create-account-btn">Créer un Compte</a>
@@ -376,8 +369,6 @@
 </body>
 
 </html>
-
-
 
 
 
