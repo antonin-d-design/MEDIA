@@ -3,370 +3,510 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tactics Arena - Accueil</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
-    
+    <title>Media Ultra Moderne - Actualités & Analyses</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* ... VOTRE STYLE CSS PRÉCÉDENT ... */
+        /* Variables CSS pour les couleurs */
         :root {
-            --color-primary: #FFFFFF; 
-            --color-secondary: #FF4500; /* Votre orange */
-            --color-text-dark: #1a1a1a; 
-            --color-text-light: #f0f0f0; 
-            --font-main: 'Outfit', sans-serif;
+            --primary-orange: #FF6B00; /* Orange vif */
+            --light-orange: #FFA500; /* Orange plus clair pour les accents */
+            --dark-grey: #333;
+            --medium-grey: #555;
+            --light-grey: #f4f4f4;
+            --white: #ffffff;
+            --text-color: var(--dark-grey);
+            --bg-color: var(--white);
         }
 
+        /* Réinitialisation de base */
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: var(--font-main);
-            background-color: var(--color-primary);
-            color: var(--color-text-dark);
+            font-family: 'Montserrat', sans-serif;
             line-height: 1.6;
-            min-height: 100vh;
-            overflow-x: hidden;
-            display: flex; 
-            flex-direction: column; 
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            scroll-behavior: smooth;
+            overflow-x: hidden; /* Empêche le défilement horizontal */
         }
 
+        a {
+            text-decoration: none;
+            color: var(--primary-orange);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--light-orange);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Conteneur principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header --- */
         .main-header {
+            background: var(--white);
+            color: var(--dark-grey);
+            padding: 20px 0;
+            border-bottom: 1px solid var(--light-grey);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: background-color 0.3s ease;
+        }
+
+        .main-header.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
-            border-bottom: 2px solid var(--color-secondary);
-            background-color: var(--color-primary);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .logo-container a {
-            text-decoration: none;
-            color: inherit;
         }
 
-        .logo-container h1 {
-            font-size: 1.8rem;
-            font-weight: 900;
-            letter-spacing: 2px;
-        }
-        
-        .logo-text-black {
-            color: var(--color-text-dark); 
-            transition: color 0.3s ease; 
-        }
-
-        .logo-container a:hover .logo-text-black {
-            color: var(--color-secondary); 
-        }
-
-        .orange-text {
-            color: var(--color-secondary);
-        }
-
-        .main-nav {
-            display: flex;
-            gap: 5px; 
-            flex-grow: 1; 
-            justify-content: center;
-        }
-        
-        .nav-button {
-            text-decoration: none; 
-            color: var(--color-text-dark);
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2em;
             font-weight: 700;
-            padding: 15px 15px; 
-            font-size: 1.1rem;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-        
-        .nav-button:hover {
-            color: var(--color-secondary); 
-            transform: scale(1.05); 
-        }
-        
-        .header-cta-container {
-            display: flex;
-            align-items: center;
-            gap: 15px; 
+            color: var(--primary-orange);
+            letter-spacing: -1px;
+            animation: bounceIn 1s ease-out;
         }
 
-        .login-btn {
-            color: var(--color-text-dark);
-            text-decoration: none;
-            font-weight: 700;
-            padding: 10px 15px;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-        
-        .login-btn:hover {
-            color: var(--color-secondary);
-        }
-        
-        .create-account-btn {
-            background-color: var(--color-secondary);
-            color: var(--color-primary);
-            border-radius: 5px;
-            padding: 10px 25px; 
-            font-size: 1rem;
-            font-weight: 700;
-            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none; 
+        .logo span {
+            color: var(--dark-grey);
         }
 
-        .create-account-btn:hover {
-            background-color: #ff6622;
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.4);
-        }
-        
-        .hero-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center; 
-            padding: 80px 5%;
-            gap: 60px;
-            flex: 1; 
-        }
-
-        .game-presentation {
-            text-align: center; 
-            display: flex; 
-            flex-direction: column;
-            align-items: center; 
-        }
-
-        @keyframes fadeInSlide {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animated-title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 15px;
-            animation: fadeInSlide 1s ease-out forwards;
-        }
-
-        .animated-text {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin-bottom: 30px;
-            animation: fadeInSlide 1s ease-out forwards 0.3s;
-            opacity: 0;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: var(--color-secondary);
-            color: var(--color-primary);
-            text-decoration: none;
-            font-size: 1.3rem;
-            font-weight: 700;
-            padding: 15px 40px;
-            border-radius: 50px;
-            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            letter-spacing: 1px;
-            animation: fadeInSlide 1s ease-out forwards 0.6s;
-            opacity: 0;
-        }
-
-        .cta-button:hover {
-            background-color: #ff6622;
-            transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(255, 69, 0, 0.5);
-        }
-
-        .feature-cards {
+        .nav-links {
             display: flex;
             gap: 30px;
-            max-width: 1200px;
+        }
+
+        .nav-links a {
+            color: var(--medium-grey);
+            font-weight: 600;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background: var(--primary-orange);
+            left: 50%;
+            bottom: -5px;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
             width: 100%;
         }
 
-        .card {
-            flex: 1;
-            background-color: var(--color-primary);
-            padding: 40px; 
-            border-radius: 15px; 
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); 
-            border: 2px solid #e0e0e0; 
-            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease, background-color 0.4s ease;
+        .nav-links a:hover {
+            color: var(--primary-orange);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-grey) 100%);
+            padding: 100px 0;
             text-align: center;
             position: relative;
-            overflow: hidden; 
-            opacity: 0; 
-            transform: translateY(30px); 
+            overflow: hidden;
         }
 
-        .card:hover {
-            transform: translateY(-10px) scale(1.03); 
-            box-shadow: 0 15px 45px rgba(255, 69, 0, 0.3); 
-            border-color: var(--color-secondary); 
-        }
-        
-        .card::before {
+        .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 15px;
-            border: 2px solid transparent; 
-            transition: border-color 0.4s ease;
-            pointer-events: none; 
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 107, 0, 0.1);
+            border-radius: 50%;
+            animation: floatShape 10s infinite ease-in-out;
+            z-index: 1;
         }
 
-        .card:hover::before {
-            border-color: var(--color-secondary); 
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -70px;
+            right: -70px;
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 165, 0, 0.15);
+            border-radius: 50%;
+            animation: floatShape 12s infinite reverse ease-in-out;
+            z-index: 1;
         }
 
-        .card-icon {
-            font-size: 3.5rem; 
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5em;
             margin-bottom: 20px;
-            color: var(--color-secondary); 
-            display: inline-block;
-            transition: transform 0.3s ease; 
+            color: var(--dark-grey);
+            animation: slideInTop 1s ease-out;
         }
 
-        .card:hover .card-icon {
-            transform: scale(1.2) rotate(5deg); 
+        .hero h1 span {
+            color: var(--primary-orange);
         }
 
-        .card h3 {
-            font-size: 1.8rem; 
-            margin-bottom: 15px;
+        .hero p {
+            font-size: 1.3em;
+            color: var(--medium-grey);
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .btn-primary {
+            background: var(--primary-orange);
+            color: var(--white);
+            padding: 15px 30px;
+            border-radius: 50px;
             font-weight: 700;
-            color: var(--color-text-dark);
-            transition: color 0.3s ease;
+            transition: background 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3);
+            display: inline-block;
+            animation: pulse 2s infinite;
         }
 
-        .card:hover h3 {
-            color: var(--color-secondary); 
+        .btn-primary:hover {
+            background: var(--light-orange);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(255, 107, 0, 0.4);
+            animation: none; /* Désactiver le pulse au hover */
         }
 
-        .card p {
-            font-size: 1.1rem; 
-            color: #555;
-            line-height: 1.7;
+        /* --- Sections d'Articles --- */
+        .articles-section {
+            padding: 80px 0;
+            background: var(--bg-color);
         }
 
-        @keyframes cardFadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
-        .card:nth-child(1) { animation: cardFadeInUp 0.7s ease-out forwards; animation-delay: 0.2s; }
-        .card:nth-child(2) { animation: cardFadeInUp 0.7s ease-out forwards; animation-delay: 0.4s; }
-        .card:nth-child(3) { animation: cardFadeInUp 0.7s ease-out forwards; animation-delay: 0.6s; }
+        .article-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0; /* Pour l'animation d'apparition */
+        }
 
-        .site-footer {
-            background-color: var(--color-secondary); 
-            color: var(--color-primary);
-            padding: 30px 5%;
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .article-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .article-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .article-content {
+            padding: 25px;
+        }
+
+        .article-content h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: var(--dark-grey);
+        }
+
+        .article-content p {
+            font-size: 0.95em;
+            color: var(--medium-grey);
+            margin-bottom: 15px;
+        }
+
+        .article-content .meta {
+            font-size: 0.8em;
+            color: #999;
+        }
+
+        .article-content .meta span {
+            margin-right: 15px;
+        }
+
+        .article-content .meta span i {
+            margin-right: 5px;
+            color: var(--primary-orange);
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            background: var(--dark-grey);
+            color: var(--light-grey);
+            padding: 40px 0;
             text-align: center;
-            font-size: 0.9rem;
-            margin-top: auto;
-            opacity: 1; 
-            transform: translateY(0);
-        }
-        
-        .footer-links {
-            margin-top: 10px;
         }
 
-        .footer-links a {
-            color: var(--color-primary);
-            text-decoration: none;
+        .main-footer .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .main-footer .footer-links a {
+            color: var(--light-grey);
             margin: 0 15px;
             transition: color 0.3s ease;
         }
 
-        .footer-links a:hover {
-            color: #ffe0b2; 
-            text-decoration: underline;
+        .main-footer .footer-links a:hover {
+            color: var(--primary-orange);
+        }
+
+        .main-footer p {
+            font-size: 0.9em;
+            color: #aaa;
+        }
+
+        /* --- Animations Keyframes --- */
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 1; }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes slideInTop {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3); }
+            50% { transform: scale(1.02); box-shadow: 0 8px 20px rgba(255, 107, 0, 0.45); }
+            100% { transform: scale(1); box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3); }
+        }
+
+        @keyframes floatShape {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(20px, 20px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* Animation d'apparition des cartes avec délai */
+        .article-card:nth-child(1) { animation-delay: 0.1s; }
+        .article-card:nth-child(2) { animation-delay: 0.2s; }
+        .article-card:nth-child(3) { animation-delay: 0.3s; }
+        .article-card:nth-child(4) { animation-delay: 0.4s; }
+        .article-card:nth-child(5) { animation-delay: 0.5s; }
+        /* Ajoutez plus de nth-child si vous avez plus de cartes initiales */
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* --- Media Queries pour le Responsive Design --- */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.8em;
+            }
+
+            .nav-links a {
+                font-size: 0.9em;
+            }
+
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .btn-primary {
+                padding: 12px 25px;
+            }
+
+            .article-content h3 {
+                font-size: 1.3em;
+            }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+
     <header class="main-header">
-        <div class="logo-container">
-            <a href="./index.html" style="text-decoration:none;">
-                <h1><span class="orange-text">TACTICS</span> <span class="logo-text-black">ARENA</span></h1>
-            </a>
-        </div>    
-        <nav class="main-nav">
-            <a href="./news.html" class="nav-button">News</a>
-            <a href="./wiki.html" class="nav-button">Wiki</a>
-            <a href="./recrutement.html" class="nav-button">Recrutement</a>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">M<span>edia</span></a>
+                <ul class="nav-links">
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#articles">Articles</a></li>
+                    <li><a href="#analyses">Analyses</a></li>
+                    <li><a href="#apropos">À Propos</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
             </nav>
-        <div class="header-cta-container">
-            <a href="./pagedeconnexion.html" class="login-btn">Connexion</a> 
-            <a href="./pageincription.html" class="create-account-btn">Créer un Compte</a>
         </div>
     </header>
-    <main class="hero-section">
-        <section class="game-presentation">
-            <h2 class="animated-title">Dominez le Champ de Bataille.</h2>
-            <p class="animated-text">
-                Plongez dans Tactics Arena, le jeu de stratégie dynamique. Construisez votre deck ultime,
-                améliorez vos personnages via notre boutique exclusive, et grimpez le
-                système de rang pour prouver votre suprématie.
-            </p>
-            <a href="#" class="cta-button animated-cta">Télécharger</a>
-        </section>
-        <section class="feature-cards">
-            <div class="card"> <span class="card-icon">⚔️</span>
-                <h3>Deck Modifiable</h3>
-                <p>Assemblez des stratégies infinies avec des centaines de cartes uniques.</p>
+
+    <section id="accueil" class="hero">
+        <div class="container hero-content">
+            <h1>L'Actualité Décryptée avec <span>Clarté</span></h1>
+            <p>Votre source d'information indépendante pour comprendre le monde qui vous entoure, avec des analyses profondes et des perspectives nouvelles.</p>
+            <a href="#articles" class="btn-primary">Découvrir les Derniers Articles</a>
+        </div>
+    </section>
+
+    <section id="articles" class="articles-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5em; margin-bottom: 60px; color: var(--dark-grey); font-family: 'Poppins', sans-serif;">Dernières Publications</h2>
+            <div class="articles-grid">
+                <div class="article-card">
+                    <img src="https://via.placeholder.com/600x400/FFA500/FFFFFF?text=Article+1" alt="Image de l'article 1">
+                    <div class="article-content">
+                        <h3>L'Impact de l'IA sur l'Emploi en 2024</h3>
+                        <p>Une analyse approfondie des tendances actuelles et futures de l'intelligence artificielle sur le marché du travail.</p>
+                        <div class="meta">
+                            <span><i class="fas fa-calendar-alt"></i> 14 Mai 2024</span>
+                            <span><i class="fas fa-tags"></i> Technologie</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="article-card">
+                    <img src="https://via.placeholder.com/600x400/FF6B00/FFFFFF?text=Article+2" alt="Image de l'article 2">
+                    <div class="article-content">
+                        <h3>Les Enjeux Géopolitiques de l'Énergie Renouvelable</h3>
+                        <p>Comment la transition énergétique redessine les alliances et les stratégies mondiales.</p>
+                        <div class="meta">
+                            <span><i class="fas fa-calendar-alt"></i> 13 Mai 2024</span>
+                            <span><i class="fas fa-tags"></i> Géopolitique</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="article-card">
+                    <img src="https://via.placeholder.com/600x400/FFA500/FFFFFF?text=Article+3" alt="Image de l'article 3">
+                    <div class="article-content">
+                        <h3>L'Avenir des Villes Intelligentes : Mythe ou Réalité ?</h3>
+                        <p>Exploration des innovations et des défis pour les métropoles de demain.</p>
+                        <div class="meta">
+                            <span><i class="fas fa-calendar-alt"></i> 12 Mai 2024</span>
+                            <span><i class="fas fa-tags"></i> Urbanisme</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="article-card">
+                    <img src="https://via.placeholder.com/600x400/FF6B00/FFFFFF?text=Article+4" alt="Image de l'article 4">
+                    <div class="article-content">
+                        <h3>La Cryptomonnaie Face à la Régulation Globale</h3>
+                        <p>Panorama des législations émergentes et de leur impact sur le marché crypto.</p>
+                        <div class="meta">
+                            <span><i class="fas fa-calendar-alt"></i> 11 Mai 2024</span>
+                            <span><i class="fas fa-tags"></i> Finance</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card">
-                <span class="card-icon">💰</span>
-                <h3>Boutique & Améliorations</h3>
-                <p>Découvrez des objets exclusifs et des améliorations puissantes pour vos héros.</p>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Mentions Légales</a>
+                <a href="#">Politique de Confidentialité</a>
+                <a href="#">Plan du Site</a>
             </div>
-            <div class="card">
-                <span class="card-icon">🏅</span>
-                <h3>Système de Rang</h3>
-                <p>Affrontez des joueurs du monde entier et prouvez votre valeur sur le champ de bataille.</p>
-            </div>
-        </section>
-        
-        <div style="height: 50vh; width: 100%;"></div> 
-        
-    </main>
-    
-    <footer class="site-footer">
-        <p>Copyright © 2025 Tactics Arena. Tous droits réservés.</p>
-        <div class="footer-links">
-            <a href="./mentionlégal.html">Mentions Légales</a>
-            <a href="./rgpd.html">Politique de Confidentialité (RGPD)</a>
-            <a href="/contact">Contact</a>
+            <p>&copy; 2024 Media Moderne. Tous droits réservés.</p>
         </div>
     </footer>
 
-</body>
+    <script>
+        // Script pour l'animation du header au scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
 
+</body>
 </html>
 
 
