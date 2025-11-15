@@ -74,20 +74,18 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        /* CORRECTION : Utilisation de space-between pour séparer les deux groupes aux extrémités */
+        /* CORRECTION FINALE : Utilisation de space-between sur le .navbar */
         .navbar {
             display: flex;
-            justify-content: space-between; 
+            justify-content: space-between; /* Pousse les deux blocs aux extrémités */
             align-items: center;
         }
 
-        /* NOUVEAU CONTENEUR POUR LE GROUPE DE GAUCHE (Logo + Liens) */
+        /* GROUPE DE GAUCHE : Logo + Liens */
         .nav-left {
             display: flex;
             align-items: center;
             gap: 40px; /* Espace entre le logo et les liens */
-            /* Assure que ce groupe est à l'extrême gauche */
-            margin-right: auto; 
         }
 
         /* Styles du Logo Point Zéro */
@@ -103,7 +101,6 @@
         .logo span {
             color: var(--dark-grey); 
         }
-        /* Fin des Styles du Logo */
 
         .nav-links {
             display: flex;
@@ -138,12 +135,11 @@
             color: var(--primary-orange);
         }
 
-        /* --- Boutons de Connexion/Inscription (Groupe de droite) --- */
+        /* --- GROUPE DE DROITE : Boutons de Connexion/Inscription --- */
         .auth-buttons {
             display: flex;
+            align-items: center;
             gap: 15px;
-            /* Assure que ce groupe est à l'extrême droite */
-            margin-left: auto;
         }
 
         .btn-auth {
@@ -258,7 +254,7 @@
             animation: none;
         }
 
-        /* --- Sections d'Articles (Rétablissement) --- */
+        /* --- Sections d'Articles --- */
         .articles-section {
             padding: 80px 0;
             background: var(--bg-color);
@@ -266,7 +262,6 @@
 
         .articles-grid {
             display: grid;
-            /* Affichage côte à côte sur les grands écrans */
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
@@ -276,14 +271,13 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            /* Animation "stylée" au survol */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             animation: fadeInUp 0.8s ease-out forwards;
             opacity: 0;
         }
 
         .article-card:hover {
-            transform: translateY(-8px) rotateZ(-0.5deg); /* Petit décalage et rotation pour le style */
+            transform: translateY(-8px) rotateZ(-0.5deg); 
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
@@ -405,13 +399,13 @@
         /* --- Media Queries pour le Responsive Design --- */
         @media (max-width: 900px) {
             .navbar {
-                flex-direction: column; /* Empile les éléments sur mobile */
+                flex-direction: column; 
                 gap: 20px;
             }
             
             .nav-left, .auth-buttons {
                 width: 100%;
-                justify-content: space-between; 
+                justify-content: center; /* Centre les éléments si l'espace est limité */
             }
 
             .nav-links {
@@ -528,6 +522,7 @@
 
 </body>
 </html>
+
 
 
 
