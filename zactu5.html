@@ -3,22 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financement Études : Le guide complet pour étudier sans stresser | Point Zéro</title>
+    <title>Créer son CV : L'IA est-elle notre meilleure alliée ? Analyse | Point Zéro</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght=400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght@400;600;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
         /* Variables CSS (IDENTIQUES À VOTRE SITE) */
         :root {
-            --primary-orange: #FF6B00; 
-            --light-orange: #FFA500; 
+            --primary-orange: #FF6B00;
+            --light-orange: #FFA500;
             --dark-grey: #333;
             --medium-grey: #555;
             --light-grey: #f4f4f4;
             --white: #ffffff;
             --text-color: var(--dark-grey);
             --bg-color: var(--white);
+            --border-color: #ddd; /* Nouvelle variable pour les bordures de journal */
+            --paper-bg: #fdfdfd; /* Une couleur légèrement cassée pour le papier */
         }
 
         /* Réinitialisation de base (IDENTIQUES À VOTRE SITE) */
@@ -70,14 +72,14 @@
 
         .navbar {
             display: flex;
-            justify-content: space-between; 
+            justify-content: space-between;
             align-items: center;
         }
 
         .nav-left {
             display: flex;
             align-items: center;
-            gap: 40px; 
+            gap: 40px;
         }
 
         .logo {
@@ -117,7 +119,7 @@
             font-size: 0.9em;
             font-weight: 600;
             display: inline-block;
-            border: 2px solid var(--light-grey); 
+            border: 2px solid var(--light-grey);
         }
 
         .btn-connect {
@@ -135,84 +137,147 @@
         /* --- STYLES SPÉCIFIQUES À LA PAGE ARTICLE --- */
         /* ------------------------------------------- */
 
-        .article-hero {
-            position: relative;
-            height: 400px; /* Hauteur de la bannière */
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Nouvelle typographie pour les titres de journaux */
+        h1, h2, h3, .section-title, .news-kicker {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .article-wrapper {
+            background-color: var(--paper-bg); /* Fond couleur papier */
+            border: 1px solid var(--border-color);
+            margin: 40px auto;
+            max-width: 1000px; /* Un peu plus large pour les colonnes */
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+
+        /* Header du "journal" avec titre principal et date */
+        .journal-header {
             text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--dark-grey);
+            padding-bottom: 20px;
         }
 
-        .article-hero-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.5); /* Assombrir l'image pour la lisibilité du texte */
+        .journal-logo {
+            font-family: 'Playfair Display', serif; /* Typo journal */
+            font-size: 3em;
+            font-weight: 700;
+            color: var(--dark-grey);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        .journal-logo span {
+            color: var(--primary-orange);
         }
 
-        .article-hero-content {
-            position: absolute;
-            z-index: 10;
-            color: var(--white);
-            max-width: 800px;
-            padding: 0 20px;
-        }
-
-        .article-hero-content h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 3.5em;
-            margin-bottom: 15px;
-            line-height: 1.1;
-            font-weight: 800;
-        }
-
-        .article-meta {
+        .journal-date {
             font-size: 0.9em;
-            opacity: 0.9;
-            margin-top: 20px;
+            color: var(--medium-grey);
         }
 
-        .article-meta i {
+        /* Section principale du titre de l'article */
+        .article-intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .article-intro h1 {
+            font-size: 3.8em;
+            color: var(--dark-grey);
+            line-height: 1.1;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: 700;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            display: inline-block; /* Pour que la bordure ne prenne pas toute la largeur */
+        }
+
+        .article-intro .news-kicker { /* Sorte de sous-titre accrocheur */
+            font-size: 1.5em;
+            color: var(--primary-orange);
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .article-intro .article-meta {
+            font-size: 0.9em;
+            color: var(--medium-grey);
+        }
+
+        .article-intro .article-meta i {
             margin-right: 5px;
             color: var(--primary-orange);
         }
         
-        /* Contenu de l'article */
-        .article-body {
-            max-width: 800px; /* Largeur de texte optimisée pour la lecture */
-            margin: 50px auto;
-            padding: 0 20px;
+        /* Layout principal du contenu en colonnes */
+        .article-content-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Par défaut une seule colonne pour le mobile */
+            gap: 30px; /* Espace entre les colonnes */
+            border-top: 1px solid var(--border-color);
+            padding-top: 30px;
+        }
+        
+        /* Mise en page pour les ordinateurs de bureau (2 colonnes) */
+        @media (min-width: 768px) {
+            .article-content-grid {
+                grid-template-columns: 2fr 1fr; /* Deux colonnes: 2/3 pour le contenu, 1/3 pour la sidebar */
+            }
+        }
+        @media (min-width: 1024px) {
+            .article-content-grid {
+                grid-template-columns: repeat(3, 1fr); /* Trois colonnes pour les très grands écrans */
+            }
+            .main-article-column {
+                grid-column: span 2; /* Le contenu principal prend 2 colonnes */
+            }
         }
 
-        .article-body h2 {
-            font-family: 'Poppins', sans-serif;
-            color: var(--primary-orange);
-            font-size: 2em;
-            margin-top: 40px;
+
+        .main-article-column {
+            font-family: 'Montserrat', sans-serif; /* Texte principal en Montserrat */
+            line-height: 1.7;
+            font-size: 1.05em;
+            color: var(--dark-grey);
+            text-align: justify; /* Justifier le texte pour un look journal */
+        }
+
+        .main-article-column h2 {
+            font-family: 'Playfair Display', serif; /* Titres de section en Playfair */
+            color: var(--dark-grey);
+            font-size: 2.2em;
+            margin-top: 35px;
             margin-bottom: 15px;
-            border-left: 4px solid var(--primary-orange);
-            padding-left: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+            line-height: 1.2;
+            text-align: left;
         }
 
-        .article-body p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: var(--medium-grey);
-            line-height: 1.8;
+        .main-article-column h3 {
+             font-family: 'Playfair Display', serif;
+            color: var(--primary-orange);
+            font-size: 1.6em;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            line-height: 1.3;
         }
 
-        .article-body ul {
+        .main-article-column p {
+            margin-bottom: 1.2em; /* Plus d'espace entre les paragraphes */
+        }
+
+        .main-article-column ul {
             list-style: disc;
             margin-left: 25px;
-            margin-bottom: 20px;
+            margin-bottom: 1.2em;
         }
 
-        .article-body li {
-            margin-bottom: 10px;
-            font-size: 1.05em;
-            color: var(--medium-grey);
+        .main-article-column li {
+            margin-bottom: 0.5em;
+            font-size: 1em;
         }
 
         .article-quote {
@@ -223,16 +288,76 @@
             font-style: italic;
             font-size: 1.2em;
             color: var(--dark-grey);
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
         
-        .article-body img {
+        .image-container {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            margin: 30px 0;
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        
+        .image-container img {
             max-width: 100%;
             height: auto;
-            border-radius: 8px;
-            margin: 30px 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: block; /* Supprime l'espace sous l'image */
+            margin-bottom: 10px;
         }
         
+        .image-caption {
+            font-size: 0.85em;
+            color: var(--medium-grey);
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* Colonne latérale pour des "brèves" ou "encadrés" */
+        .sidebar-column {
+            background-color: var(--light-grey);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px; /* Espace si sur mobile */
+        }
+
+        .sidebar-column h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dark-grey);
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed var(--primary-orange); /* Trait hachuré */
+        }
+
+        .sidebar-item {
+            margin-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 20px;
+        }
+        .sidebar-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .sidebar-item h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-orange);
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-item p {
+            font-size: 0.9em;
+            color: var(--medium-grey);
+            line-height: 1.5;
+        }
+
+
         /* Bouton de retour (Exemple de bouton d'action contextuel) */
         .btn-return {
             display: block;
@@ -249,7 +374,6 @@
         .btn-return:hover {
             background: var(--light-orange);
         }
-
 
         /* --- Footer (IDENTIQUES À VOTRE SITE) --- */
         .main-footer {
@@ -286,69 +410,115 @@
         </div>
     </header>
 
-    <article>
-        <section class="article-hero">
-            
-            <img src="URL_IMAGE_LIBRE_DE_DROITS_FOND_ETUDES.jpg" alt="Jeune étudiant souriant gérant son budget" class="article-hero-image">
-            <div class="article-hero-content">
-                <h1>Comment financer tes études sans stresser ? Le guide complet.</h1>
+    <div class="article-wrapper">
+        <div class="journal-header">
+            <h1 class="journal-logo">Point<span> Zéro</span> Info</h1>
+            <p class="journal-date">Édition Spéciale | Lundi 17 Novembre 2025</p>
+        </div>
+
+        <article>
+            <section class="article-intro">
+                <p class="news-kicker">TECH & RECRUTEMENT</p>
+                <h1>CRÉER SON CV : L'IA EST-ELLE NOTRE MEILLEURE ALLIÉE ?</h1>
                 <p class="article-meta">
-                    Par **Jules DUPONT** - <i class="fas fa-calendar-alt"></i> Publié le 14 Nov 2025 - <i class="fas fa-tags"></i> Argent & Avenir
+                    Par **Axel DUBOIS** - <i class="fas fa-calendar-alt"></i> Publié le 17 Nov 2025 - <i class="fas fa-tags"></i> Carrière & Intelligence Artificielle
                 </p>
-            </div>
-        </section>
+            </section>
 
-        <section class="article-body">
-            
-            <p><strong>C’est une des plus grosses sources d'inquiétude pour les étudiants : l'argent.</strong> Entre les frais de scolarité, le loyer, la nourriture, et le désir (légitime) de profiter un peu de sa vie étudiante, les chiffres peuvent vite monter. Mais pas de panique. Financer ses études ne doit pas être un parcours du combattant. Il suffit d'être **informé** et **organisé**.</p>
+            <section class="article-content-grid container">
+                <div class="main-article-column">
+                    <p><strong>Rédiger un Curriculum Vitae (CV) percutant est souvent perçu comme un véritable casse-tête. Heureusement, l'Intelligence Artificielle (IA) a fait son entrée dans le processus, promettant de révolutionner la manière dont nous nous présentons.</strong> Des générateurs automatiques aux outils d'optimisation par mots-clés, l'IA est-elle un atout indispensable ou un simple gadget pour les chercheurs d'emploi ? Analysons son véritable impact.</p>
 
-            <div class="article-quote">
-                « L'information est ton meilleur allié. Connaître toutes les aides auxquelles tu as droit, c'est déjà la moitié du budget assuré. »
-            </div>
+                    <div class="image-container">
+                        <img src="URL_IMAGE_LIBRE_DE_DROITS_IA_CV.jpg" alt="Un humain travaillant sur un ordinateur avec une intelligence artificielle pour générer un CV.">
+                        <p class="image-caption">L'IA, une aide précieuse pour structurer et optimiser son profil. Image: Unsplash/Canva</p>
+                    </div>
+                    
+                    <h2>1. L'IA au Service de l'Optimisation Technique</h2>
+                    
+                    <h3>Le défi des ATS (Applicant Tracking Systems)</h3>
+                    <p>Aujourd'hui, une grande partie des grandes entreprises utilise des logiciels d'**ATS** (Systèmes de Suivi des Candidatures) pour filtrer les CV avant même qu'ils n'atteignent un œil humain. L'IA excelle à deux niveaux pour contourner ce premier barrage :</p>
+                    <ul>
+                        <li>**Analyse par mots-clés :** L'IA peut comparer votre CV à l'offre d'emploi et vous suggérer des termes précis (des "mots-clés") à ajouter ou à modifier pour maximiser vos chances de passer le filtre automatique.</li>
+                        <li>**Formatage optimal :** Elle vérifie que la mise en page de votre CV est correctement structurée pour être lue sans erreur par ces systèmes, évitant les polices illisibles ou les zones de texte non reconnues.</li>
+                    </ul>
 
-            <h2>1. Les Bourses et Aides du Crous : La base</h2>
-            
-            <p>La première chose à faire est de remplir le **Dossier Social Étudiant (DSE)**. C'est ce dossier qui détermine votre éligibilité à la bourse sur critères sociaux, qui est la plus courante. Ne manquez pas la date limite !</p>
-            
-            <p>Voici les autres aides importantes à considérer :</p>
-            <ul>
-                <li>**Aide au mérite :** Pour les boursiers ayant obtenu une mention Très Bien au Bac. C'est un bonus non négligeable.</li>
-                <li>**Aide à la mobilité :** Si vous devez déménager pour vos études (souvent pour un Master).</li>
-                <li>**Aide spécifique ponctuelle :** Si vous rencontrez une difficulté financière imprévue en cours d'année.</li>
-            </ul>
+                    <div class="article-quote">
+                        « L'IA ne remplace pas votre expérience, mais elle garantit que cette expérience sera vue par un recruteur. C'est le nouveau 'code de la route' du recrutement. »
+                    </div>
 
-            <img src="URL_IMAGE_LIBRE_DE_DROITS_BOURSE.jpg" alt="Étudiant utilisant son ordinateur avec des icônes d'argent et de documents" style="width: 70%; display: block; margin-left: auto; margin-right: auto;"> 
+                    <h2>2. Améliorer le Fond sans Perdre l'Authenticité</h2>
 
-            <h2>2. Jobs Étudiants : Optimiser sans s'épuiser</h2>
+                    <h3>Aide à la formulation et à la concision</h3>
+                    <p>L'IA, notamment via les grands modèles de langage, est une excellente rédactrice :</p>
+                    <ul>
+                        <li>**Transformation des tâches en résultats :** Elle peut vous aider à transformer une description de poste ennuyeuse ("J'étais responsable de la gestion") en une affirmation percutante axée sur les résultats ("J'ai optimisé la gestion des stocks, réduisant les coûts de 15 %").</li>
+                        <li>**Ciblage de la lettre de motivation :** L'IA peut générer un brouillon de lettre de motivation ultra-personnalisé en quelques secondes, en s'appuyant sur l'offre d'emploi et votre CV. Attention cependant, ce n'est qu'une base !</li>
+                    </ul>
 
-            <p>Travailler pendant ses études, c'est bien, mais il faut que ça reste **flexible**. L'idéal est de trouver un job avec des horaires adaptés au planning universitaire, ou un travail en ligne qui vous permet de gérer votre temps.</p>
-            
-            <p>Les meilleurs plans (les plus flexibles) :</p>
-            <ul>
-                <li>**Tutorat/Soutien scolaire :** Bien payé et souvent en fin de journée.</li>
-                <li>**Jobs sur le campus :** Les bibliothèques ou services administratifs universitaires ont souvent des postes à temps très partiel.</li>
-                <li>**Coursier ou livreur :** Idéal si vous aimez bouger et que vous avez des disponibilités irrégulières.</li>
-            </ul>
-            
-            <h2>3. Les aides locales et insolites</h2>
+                    <div class="image-container">
+                        <img src="URL_IMAGE_LIBRE_DE_DROITS_IA_BRAINSTORMING.jpg" alt="Un cerveau lumineux avec des connexions numériques sur un tableau blanc.">
+                        <p class="image-caption">L'IA est un excellent outil de brainstorming de carrière. Image: Pexels</p>
+                    </div>
 
-            <p>Ne vous limitez pas aux aides nationales. Votre région, département ou ville propose souvent des dispositifs méconnus pour les jeunes :</p>
-            
-            <p>Par exemple, certaines régions offrent des **chèques livres** ou des aides pour l'achat de **matériel informatique**. De plus, pensez aux banques : elles proposent souvent des **prêts étudiants garantis par l'État** avec des taux avantageux et des remboursements différés après l'obtention de votre diplôme. C'est une solution à considérer pour les grosses dépenses.</p>
-            
-            <div class="article-quote">
-                « Un prêt étudiant n'est pas forcément une mauvaise chose, s'il est utilisé de manière stratégique et que vous comprenez les conditions de remboursement. »
-            </div>
+                    <h2>3. Les Limites et le Risque de Standardisation</h2>
 
-            <p>Pour finir, le secret est de faire un **budget réaliste**. Suivez vos dépenses pendant un mois, et coupez le superflu. Un petit effort d'organisation au début vous garantira une année plus sereine, sans le stress de fin de mois.</p>
+                    <h3>Le piège de la perte d'identité</h3>
+                    <p>Le principal danger de l'utilisation excessive de l'IA est la **standardisation**. Si tout le monde utilise le même outil de rédaction avec les mêmes invites, les CV risquent de se ressembler et de perdre leur **personnalité** unique. Un recruteur expérimenté saura rapidement identifier un texte généré de manière robotique et peu sincère.</p>
+                    
+                    <h3>Le rôle indispensable de la relecture humaine</h3>
+                    <p>L'IA fait des erreurs. Elle ne peut pas :</p>
+                    <ul>
+                        <li>**Vérifier la véracité** de vos informations.</li>
+                        <li>**Adapter le ton** à la culture spécifique de l'entreprise visée (start-up décontractée vs. grand groupe traditionnel).</li>
+                        <li>**Ajouter l'émotion** et la passion qui font la différence lors d'une candidature.</li>
+                    </ul>
+                    <p>L'outil est donc un **assistant**, pas un substitut. La touche finale et la sincérité doivent venir de vous.</p>
+
+                    <div class="article-quote">
+                        « L'IA est un moteur de recherche sophistiqué pour votre carrière. Elle vous donne le chemin optimal, mais c'est à vous de conduire avec votre propre style. »
+                    </div>
+
+                    <p>Pour conclure, l'IA est indéniablement l'une des meilleures alliées pour optimiser son CV sur le plan technique et structurel. Elle permet de gagner un temps précieux et d'éviter les erreurs basiques. Cependant, elle ne doit être utilisée que comme une **béquille stratégique**. Le succès d'un CV repose toujours sur l'authenticité de l'expérience et la clarté du projet professionnel que seul le candidat peut insuffler.</p>
+                    
+                </div>
+
+                <div class="sidebar-column">
+                    <h3>À la Une : Brèves & Conseils Tech</h3>
+                    
+                    <div class="sidebar-item">
+                        <h4>Astuce Mots-clés</h4>
+                        <p>Copiez/collez une offre d'emploi dans un outil d'IA (comme ChatGPT) et demandez-lui d'identifier les **5 compétences les plus critiques** à intégrer dans votre CV.</p>
+                    </div>
+
+                    <div class="sidebar-item">
+                        <h4>Outil Recommandé</h4>
+                        <p>Des plateformes comme **Kickresume** ou **Enhancv** intègrent directement des fonctions d'IA pour des designs professionnels et une optimisation textuelle.</p>
+                    </div>
+
+                    <div class="sidebar-item">
+                        <h4>Le Revers de la Médaille</h4>
+                        <p>De plus en plus d'entreprises développent des IA capables de détecter les textes générés par l'IA. Pour éviter d'être pénalisé, personnalisez toujours le texte final.</p>
+                    </div>
+
+                    <div class="image-container">
+                        <img src="URL_IMAGE_LIBRE_DE_DROITS_CURRICULUM.jpg" alt="Gros plan sur un CV bien rédigé.">
+                        <p class="image-caption">Le formatage compte plus que jamais. Image: Pixabay</p>
+                    </div>
+
+                    <div class="sidebar-item">
+                        <h4>Impact sur l'image</h4>
+                        <p>L'IA peut maintenant générer des photos de profil professionnelles (style "photo LinkedIn") à partir de simples selfies, une aide pour ceux qui n'ont pas de photographe.</p>
+                    </div>
+                </div>
+            </section>
             
             <a href="index.html#articles" class="btn-return">
-                <i class="fas fa-arrow-left"></i> Retour aux dernières actualités
+                <i class="fas fa-arrow-left"></i> Retour aux articles sur l'Avenir & la Carrière
             </a>
             
-        </section>
-
-    </article>
+        </article>
+    </div>
 
     <footer class="main-footer">
         <div class="container">
@@ -363,4 +533,8 @@
     </footer>
 
 </body>
+</html>
+
+</body>
+
 </html>
