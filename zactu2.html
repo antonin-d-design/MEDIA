@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financement Études : Le guide complet pour étudier sans stresser | Point Zéro</title>
+    <title>Santé Mentale : 5 tips pour gérer le stress des exams | Point Zéro</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght=400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght@400;600;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
@@ -19,6 +19,8 @@
             --white: #ffffff;
             --text-color: var(--dark-grey);
             --bg-color: var(--white);
+            --border-color: #ddd; 
+            --paper-bg: #fdfdfd; 
         }
 
         /* Réinitialisation de base (IDENTIQUES À VOTRE SITE) */
@@ -132,88 +134,152 @@
         }
 
         /* ------------------------------------------- */
-        /* --- STYLES SPÉCIFIQUES À LA PAGE ARTICLE --- */
+        /* --- STYLES JOURNALISTIQUES (IDENTIQUES) --- */
         /* ------------------------------------------- */
 
-        .article-hero {
-            position: relative;
-            height: 400px; /* Hauteur de la bannière */
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        h1, h2, h3, .section-title, .news-kicker {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .article-wrapper {
+            background-color: var(--paper-bg); 
+            border: 1px solid var(--border-color);
+            margin: 40px auto;
+            max-width: 1000px; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+
+        .journal-header {
             text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--dark-grey);
+            padding-bottom: 20px;
         }
 
-        .article-hero-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.5); /* Assombrir l'image pour la lisibilité du texte */
+        .journal-logo {
+            font-family: 'Playfair Display', serif; 
+            font-size: 3em;
+            font-weight: 700;
+            color: var(--dark-grey);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        .journal-logo span {
+            color: var(--primary-orange);
         }
 
-        .article-hero-content {
-            position: absolute;
-            z-index: 10;
-            color: var(--white);
-            max-width: 800px;
-            padding: 0 20px;
-        }
-
-        .article-hero-content h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 3.5em;
-            margin-bottom: 15px;
-            line-height: 1.1;
-            font-weight: 800;
-        }
-
-        .article-meta {
+        .journal-date {
             font-size: 0.9em;
-            opacity: 0.9;
-            margin-top: 20px;
+            color: var(--medium-grey);
         }
 
-        .article-meta i {
+        .article-intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .article-intro h1 {
+            font-size: 3.8em;
+            color: var(--dark-grey);
+            line-height: 1.1;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: 700;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+
+        .article-intro .news-kicker { 
+            font-size: 1.5em;
+            color: var(--primary-orange);
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .article-intro .article-meta {
+            font-size: 0.9em;
+            color: var(--medium-grey);
+        }
+
+        .article-intro .article-meta i {
             margin-right: 5px;
             color: var(--primary-orange);
         }
         
-        /* Contenu de l'article */
-        .article-body {
-            max-width: 800px; /* Largeur de texte optimisée pour la lecture */
-            margin: 50px auto;
-            padding: 0 20px;
+        /* Layout principal du contenu en colonnes */
+        .article-content-grid {
+            display: grid;
+            grid-template-columns: 1fr; 
+            gap: 30px; 
+            border-top: 1px solid var(--border-color);
+            padding-top: 30px;
+        }
+        
+        @media (min-width: 768px) {
+            .article-content-grid {
+                grid-template-columns: 2fr 1fr; 
+            }
+        }
+        @media (min-width: 1024px) {
+            .article-content-grid {
+                grid-template-columns: repeat(3, 1fr); 
+            }
+            .main-article-column {
+                grid-column: span 2; 
+            }
         }
 
-        .article-body h2 {
-            font-family: 'Poppins', sans-serif;
-            color: var(--primary-orange);
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 15px;
-            border-left: 4px solid var(--primary-orange);
-            padding-left: 15px;
-        }
 
-        .article-body p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: var(--medium-grey);
-            line-height: 1.8;
-        }
-
-        .article-body ul {
-            list-style: disc;
-            margin-left: 25px;
-            margin-bottom: 20px;
-        }
-
-        .article-body li {
-            margin-bottom: 10px;
+        .main-article-column {
+            font-family: 'Montserrat', sans-serif; 
+            line-height: 1.7;
             font-size: 1.05em;
-            color: var(--medium-grey);
+            color: var(--dark-grey);
+            text-align: justify; 
         }
+
+        .main-article-column h2 {
+            font-family: 'Playfair Display', serif; 
+            color: var(--dark-grey);
+            font-size: 2.2em;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+            line-height: 1.2;
+            text-align: left;
+        }
+
+        .main-article-column h3 {
+             font-family: 'Playfair Display', serif;
+            color: var(--primary-orange);
+            font-size: 1.6em;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .main-article-column p {
+            margin-bottom: 1.2em; 
+        }
+
+        .main-article-column ol { /* Liste numérotée pour les tips */
+            list-style: decimal;
+            margin-left: 25px;
+            margin-bottom: 1.2em;
+        }
+        .main-article-column ol > li {
+            margin-bottom: 20px; /* Plus d'espace entre les tips */
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        .main-article-column ol > li p {
+            font-weight: 400; /* Texte de la liste normal */
+            margin-top: 5px;
+        }
+
 
         .article-quote {
             background-color: var(--light-grey);
@@ -223,17 +289,75 @@
             font-style: italic;
             font-size: 1.2em;
             color: var(--dark-grey);
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
         
-        .article-body img {
+        .image-container {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            margin: 30px 0;
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        
+        .image-container img {
             max-width: 100%;
             height: auto;
-            border-radius: 8px;
-            margin: 30px 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: block;
+            margin-bottom: 10px;
         }
         
-        /* Bouton de retour (Exemple de bouton d'action contextuel) */
+        .image-caption {
+            font-size: 0.85em;
+            color: var(--medium-grey);
+            text-align: center;
+            font-style: italic;
+        }
+
+        .sidebar-column {
+            background-color: var(--light-grey);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px; 
+        }
+
+        .sidebar-column h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dark-grey);
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed var(--primary-orange); 
+        }
+
+        .sidebar-item {
+            margin-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 20px;
+        }
+        .sidebar-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .sidebar-item h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-orange);
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-item p {
+            font-size: 0.9em;
+            color: var(--medium-grey);
+            line-height: 1.5;
+        }
+
+
         .btn-return {
             display: block;
             width: fit-content;
@@ -249,7 +373,6 @@
         .btn-return:hover {
             background: var(--light-orange);
         }
-
 
         /* --- Footer (IDENTIQUES À VOTRE SITE) --- */
         .main-footer {
@@ -286,69 +409,111 @@
         </div>
     </header>
 
-    <article>
-        <section class="article-hero">
-            
-            <img src="URL_IMAGE_LIBRE_DE_DROITS_FOND_ETUDES.jpg" alt="Jeune étudiant souriant gérant son budget" class="article-hero-image">
-            <div class="article-hero-content">
-                <h1>Comment financer tes études sans stresser ? Le guide complet.</h1>
+    <div class="article-wrapper">
+        <div class="journal-header">
+            <h1 class="journal-logo">Point<span> Zéro</span> Info</h1>
+            <p class="journal-date">Édition Santé & Bien-être | Mercredi 13 Novembre 2025</p>
+        </div>
+
+        <article>
+            <section class="article-intro">
+                <p class="news-kicker">FOCUS EXAMENS ET BIEN-ÊTRE</p>
+                <h1>SANTÉ MENTALE : 5 TIPS POUR GÉRER L'ANXIÉTÉ DES EXAMS</h1>
                 <p class="article-meta">
-                    Par **Jules DUPONT** - <i class="fas fa-calendar-alt"></i> Publié le 14 Nov 2025 - <i class="fas fa-tags"></i> Argent & Avenir
+                    Par **Léa MARTIN** - <i class="fas fa-calendar-alt"></i> Publié le 13 Nov 2025 - <i class="fas fa-tags"></i> Bien-être & Études
                 </p>
-            </div>
-        </section>
+            </section>
 
-        <section class="article-body">
-            
-            <p><strong>C’est une des plus grosses sources d'inquiétude pour les étudiants : l'argent.</strong> Entre les frais de scolarité, le loyer, la nourriture, et le désir (légitime) de profiter un peu de sa vie étudiante, les chiffres peuvent vite monter. Mais pas de panique. Financer ses études ne doit pas être un parcours du combattant. Il suffit d'être **informé** et **organisé**.</p>
+            <section class="article-content-grid container">
+                <div class="main-article-column">
+                    <p><strong>La pression monte, la date approche, et l'estomac se noue.</strong> Le stress des examens n'est pas seulement une question d'organisation, c'est une véritable bataille pour votre santé mentale. Contrairement à ce que l'on pense, stresser ne vous rend pas plus efficace. Il vous épuise. Heureusement, il existe des techniques simples, mais puissantes, pour reprendre le contrôle de votre mental et transformer cette anxiété en énergie positive.</p>
 
-            <div class="article-quote">
-                « L'information est ton meilleur allié. Connaître toutes les aides auxquelles tu as droit, c'est déjà la moitié du budget assuré. »
-            </div>
+                    <div class="image-container">
+                        <img src="URL_IMAGE_LIBRE_DE_DROITS_STRESS.jpg" alt="Jeune personne tenant sa tête devant des livres, l'air stressé.">
+                        <p class="image-caption">Ne laissez pas l'anxiété prendre le dessus. Image: Unsplash/Canva</p>
+                    </div>
+                    
+                    <h2>1. Comprendre l'ennemi : Le cercle vicieux du stress</h2>
+                    
+                    <p>Le stress des exams est souvent alimenté par la **procrastination** et la **peur de l'échec**. Plus vous repoussez, plus vous vous sentez coupable, ce qui augmente le stress, ce qui vous fait repousser encore plus... Pour briser ce cycle, il faut des actions immédiates et concrètes. On commence par les 5 tips essentiels.</p>
+                    
+                    <div class="article-quote">
+                        « Le cerveau ne fait pas la différence entre un danger réel et le danger imaginaire de ne pas avoir son examen. Il faut lui envoyer un message de calme ! »
+                    </div>
 
-            <h2>1. Les Bourses et Aides du Crous : La base</h2>
-            
-            <p>La première chose à faire est de remplir le **Dossier Social Étudiant (DSE)**. C'est ce dossier qui détermine votre éligibilité à la bourse sur critères sociaux, qui est la plus courante. Ne manquez pas la date limite !</p>
-            
-            <p>Voici les autres aides importantes à considérer :</p>
-            <ul>
-                <li>**Aide au mérite :** Pour les boursiers ayant obtenu une mention Très Bien au Bac. C'est un bonus non négligeable.</li>
-                <li>**Aide à la mobilité :** Si vous devez déménager pour vos études (souvent pour un Master).</li>
-                <li>**Aide spécifique ponctuelle :** Si vous rencontrez une difficulté financière imprévue en cours d'année.</li>
-            </ul>
+                    <h2>2. Les 5 commandements anti-stress express</h2>
 
-            <img src="URL_IMAGE_LIBRE_DE_DROITS_BOURSE.jpg" alt="Étudiant utilisant son ordinateur avec des icônes d'argent et de documents" style="width: 70%; display: block; margin-left: auto; margin-right: auto;"> 
+                    <p>Voici des techniques rapides pour relâcher la pression et rester concentré(e) quand cela compte vraiment :</p>
+                    <ol>
+                        <li>
+                            **Le Micro-Break de 5 minutes : Lâcher l'écran.**
+                            <p>Toutes les 45 minutes d'étude, éloignez-vous de votre bureau. Buvez un verre d'eau, regardez par la fenêtre, faites 10 pas. C'est le principe de la **méthode Pomodoro** : des cycles intenses suivis d'une mini-récompense pour réinitialiser le focus.</p>
+                        </li>
+                        <li>
+                            **La Respiration 4-7-8 : Calmer le système nerveux.**
+                            <p>Quand l'anxiété monte, faites cet exercice simple : inspirez par le nez pendant 4 secondes, retenez votre souffle pendant 7 secondes, expirez lentement par la bouche pendant 8 secondes. Répétez 4 fois. Effet calmant garanti.</p>
+                        </li>
+                        <li>
+                            **Le "Dumping" d'inquiétude : Videz votre tête.**
+                            <p>Chaque soir, avant de dormir, prenez 5 minutes pour écrire sur une feuille tous les soucis et toutes les tâches qui vous trottent dans la tête. Une fois sur le papier, votre cerveau peut relâcher ces pensées et se concentrer sur le sommeil.</p>
+                        </li>
+                        <li>
+                            **Le "Nocturne" interdit : Éteindre les écrans.**
+                            <p>L'étude la plus efficace est inutile sans un sommeil réparateur. Éteignez tous les écrans (téléphone, tablette, PC) au moins 1 heure avant de vous coucher. La lumière bleue bloque la production de mélatonine, l'hormone du sommeil.</p>
+                        </li>
+                        <li>
+                            **Le Mouvement Anti-Cerveau : Bouger son corps.**
+                            <p>Même 20 minutes de marche rapide ou une petite session de stretching peut réduire le niveau de cortisol (l'hormone du stress). Le sport est votre meilleur allié contre la saturation cognitive.</p>
+                        </li>
+                    </ol>
 
-            <h2>2. Jobs Étudiants : Optimiser sans s'épuiser</h2>
+                    <div class="image-container">
+                        <img src="URL_IMAGE_LIBRE_DE_DROITS_RESPIRATION.jpg" alt="Personne méditant ou faisant de la respiration dans un endroit calme.">
+                        <p class="image-caption">La technique 4-7-8 est un outil puissant pour l'auto-régulation. Image: Pexels</p>
+                    </div>
 
-            <p>Travailler pendant ses études, c'est bien, mais il faut que ça reste **flexible**. L'idéal est de trouver un job avec des horaires adaptés au planning universitaire, ou un travail en ligne qui vous permet de gérer votre temps.</p>
-            
-            <p>Les meilleurs plans (les plus flexibles) :</p>
-            <ul>
-                <li>**Tutorat/Soutien scolaire :** Bien payé et souvent en fin de journée.</li>
-                <li>**Jobs sur le campus :** Les bibliothèques ou services administratifs universitaires ont souvent des postes à temps très partiel.</li>
-                <li>**Coursier ou livreur :** Idéal si vous aimez bouger et que vous avez des disponibilités irrégulières.</li>
-            </ul>
-            
-            <h2>3. Les aides locales et insolites</h2>
+                    <h2>3. Quand demander de l'aide ?</h2>
 
-            <p>Ne vous limitez pas aux aides nationales. Votre région, département ou ville propose souvent des dispositifs méconnus pour les jeunes :</p>
-            
-            <p>Par exemple, certaines régions offrent des **chèques livres** ou des aides pour l'achat de **matériel informatique**. De plus, pensez aux banques : elles proposent souvent des **prêts étudiants garantis par l'État** avec des taux avantageux et des remboursements différés après l'obtention de votre diplôme. C'est une solution à considérer pour les grosses dépenses.</p>
-            
-            <div class="article-quote">
-                « Un prêt étudiant n'est pas forcément une mauvaise chose, s'il est utilisé de manière stratégique et que vous comprenez les conditions de remboursement. »
-            </div>
+                    <p>Il est important de distinguer le stress normal de l'anxiété chronique. Si vous n'arrivez plus à dormir, si vous avez des crises de larmes fréquentes, ou si votre alimentation est complètement perturbée, c'est un signal d'alarme. N'hésitez pas à vous tourner vers les services de santé de votre université. Beaucoup d'établissements proposent des consultations psychologiques gratuites et confidentielles pour leurs étudiants.</p>
+                    
+                </div>
 
-            <p>Pour finir, le secret est de faire un **budget réaliste**. Suivez vos dépenses pendant un mois, et coupez le superflu. Un petit effort d'organisation au début vous garantira une année plus sereine, sans le stress de fin de mois.</p>
+                <div class="sidebar-column">
+                    <h3>Vite fait : Focus Bien-Être</h3>
+                    
+                    <div class="sidebar-item">
+                        <h4>Erreur à éviter</h4>
+                        <p>Le café à haute dose : Il augmente l'anxiété et perturbe le sommeil. Privilégiez le thé vert, plus doux, ou l'eau pour rester hydraté.</p>
+                    </div>
+
+                    <div class="sidebar-item">
+                        <h4>Le secret de l'alimentation</h4>
+                        <p>Les noix, le poisson gras (Omega-3) et les légumes verts sont des "super-aliments" pour le cerveau. Un bon repas équilibré est plus efficace que n'importe quel stimulant chimique.</p>
+                    </div>
+
+                    <div class="image-container">
+                        <img src="URL_IMAGE_LIBRE_DE_DROITS_LUMIERES_BLEUE.jpg" alt="Un téléphone portable avec de la lumière bleue dans le noir.">
+                        <p class="image-caption">La lumière bleue est l'ennemi du sommeil réparateur. Image: Pixabay</p>
+                    </div>
+
+                    <div class="sidebar-item">
+                        <h4>Aide Rapide</h4>
+                        <p>La ligne d'écoute nationale pour les étudiants est disponible 24/7. N'ayez jamais honte de parler si la pression est trop forte.</p>
+                    </div>
+
+                    <div class="sidebar-item">
+                        <h4>Challenge Point Zéro</h4>
+                        <p>Essayez une semaine sans notifications. Coupez le son de votre téléphone pendant vos heures d'étude pour un focus maximal.</p>
+                    </div>
+                </div>
+            </section>
             
             <a href="index.html#articles" class="btn-return">
                 <i class="fas fa-arrow-left"></i> Retour aux dernières actualités
             </a>
             
-        </section>
-
-    </article>
+        </article>
+    </div>
 
     <footer class="main-footer">
         <div class="container">
