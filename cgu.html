@@ -3,10 +3,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conditions Générales d'Utilisation | Point Zéro</title>
+    <title>CGU : Nos Règles du Jeu | Point Zéro</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>/* COPIER/COLLER L'INTÉGRALITÉ DU BLOC <style> DE mentions-legales.html ICI */</style>
+    <style>
+        /* Variables CSS pour les couleurs */
+        :root {
+            --primary-orange: #FF6B00;
+            --light-orange: #FFA500;
+            --dark-grey: #333;
+            --medium-grey: #555;
+            --light-grey: #f4f4f4;
+            --white: #ffffff;
+            --text-color: var(--dark-grey);
+            --bg-color: var(--white);
+        }
+
+        /* Réinitialisation de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-orange);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--light-orange);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Conteneur principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header --- */
+        .main-header {
+            background: var(--white);
+            color: var(--dark-grey);
+            padding: 20px 0;
+            border-bottom: 1px solid var(--light-grey);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        /* 1. STYLES DU LOGO POINT ZÉRO */
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2em;
+            font-weight: 700;
+            color: var(--dark-grey); /* "Point" en Noir */
+            letter-spacing: -1px;
+            transition: color 0.3s ease;
+        }
+
+        .logo span {
+            color: var(--primary-orange); /* "Zéro" en Orange */
+            transition: color 0.3s ease;
+        }
+
+        /* Effet de survol sur tout le logo (balise <a>) */
+        .logo:hover {
+            color: var(--primary-orange); /* "Point" devient orange */
+        }
+        
+        .logo:hover span {
+            color: var(--primary-orange); /* "Zéro" reste orange */
+        }
+
+        
+        .nav-links {
+            display: flex; /* Ajout du display pour gérer l'alignement des liens */
+            gap: 30px;
+        }
+        
+        .nav-links a, .nav-left > a:not(.logo) { /* Cible le lien "Toutes les Actus" et les liens de nav existants */
+            color: var(--dark-grey); /* Texte en noir */
+            font-weight: 600;
+            font-size: 1.1em; /* Un peu plus gros */
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-links a::after, .nav-left > a:not(.logo)::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background: var(--primary-orange);
+            left: 50%;
+            bottom: -5px;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-left > a:not(.logo):hover {
+            color: var(--primary-orange); /* Texte devient orange */
+            transform: scale(1.05); /* Légère grossissement */
+        }
+        
+        .nav-links a:hover::after, .nav-left > a:not(.logo):hover::after {
+            width: 100%; /* Soulignement orange complet */
+        }
+
+        /* --- GROUPE DE DROITE : Boutons de Connexion/Inscription --- */
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* 3. STYLES DES BOUTONS DE CONNEXION/INSCRIPTION (Cadre stylisé) */
+        .btn-auth {
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            display: inline-block;
+            border: 2px solid var(--light-grey);
+        }
+
+        .btn-connect {
+            color: var(--dark-grey);
+            background: var(--white);
+        }
+
+        .btn-signup {
+            background: var(--primary-orange);
+            color: var(--white);
+            border: 2px solid var(--primary-orange);
+            box-shadow: 0 3px 10px rgba(255, 107, 0, 0.2);
+        }
+
+        /* Effet de survol style cadre (zoom et ombre) */
+        .btn-auth:hover {
+            transform: scale(1.05); /* L'effet stylisé demandé */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-connect:hover {
+            border-color: var(--primary-orange);
+            color: var(--primary-orange);
+            background: var(--white);
+        }
+
+        .btn-signup:hover {
+            background: var(--light-orange);
+            border-color: var(--light-orange);
+            box-shadow: 0 7px 20px rgba(255, 107, 0, 0.4);
+        }
+        
+        /* --- Styles de la Section Contenu Légal --- */
+        .legal-section {
+            padding: 50px 0 80px 0; 
+            background: var(--bg-color);
+        }
+
+        .legal-section h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: var(--primary-orange);
+            text-align: center;
+        }
+        
+        .legal-section > .container > p {
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 50px;
+            color: var(--medium-grey);
+        }
+
+        .legal-content h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2em;
+            color: var(--dark-grey);
+            margin-top: 40px;
+            margin-bottom: 15px;
+            /* Nouveau style : petit trait orange au lieu de gris */
+            border-left: 5px solid var(--primary-orange); 
+            padding-left: 15px;
+            line-height: 1.2;
+        }
+
+        .legal-content h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3em;
+            color: var(--medium-grey);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+
+        .legal-content p, .legal-content li {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        
+        .legal-content ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+
+
+        /* --- Footer --- */
+        .main-footer {
+            background: var(--dark-grey);
+            color: var(--light-grey);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-links-legal a {
+            color: var(--light-grey);
+            margin: 0 10px;
+            font-size: 0.9em;
+        }
+
+        .footer-links-legal a:hover {
+            color: var(--primary-orange);
+        }
+
+        .main-footer p {
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #ccc;
+        }
+        
+        /* --- Media Queries pour la responsivité (non demandée mais bonne pratique) --- */
+        @media (max-width: 900px) {
+            .nav-left {
+                gap: 20px;
+            }
+            .nav-links {
+                display: none; 
+            }
+            .navbar {
+                justify-content: space-around;
+            }
+            .logo {
+                font-size: 1.8em;
+            }
+            .legal-section h1 {
+                font-size: 2.5em;
+            }
+        }
+
+    </style>
 </head>
 <body>
 
@@ -15,9 +295,12 @@
             <nav class="navbar">
                 <div class="nav-left">
                     <a href="index.html" class="logo">Point<span> Zéro</span></a>
+                    
                     <a href="toutes-les-actus.html" class="nav-link-actus">Toutes les Actus</a>
+                    
                     <ul class="nav-links"></ul>
                 </div>
+                
                 <div class="auth-buttons">
                     <a href="./pagedeconnexion.html" class="btn-auth btn-connect">Connexion</a>
                     <a href="./pageincription.html" class="btn-auth btn-signup">Créer un Compte</a>
@@ -28,29 +311,46 @@
 
     <section class="legal-section">
         <div class="container">
-            <h1>Conditions Générales d'Utilisation (CGU)</h1>
+            <h1>Nos Règles du Jeu (CGU)</h1>
+            <p>Bienvenue sur Point Zéro ! Ces règles sont simples : elles expliquent comment utiliser notre plateforme. En naviguant ici, vous acceptez ces conditions. C’est clair, simple, et dans votre intérêt !</p>
             
             <div class="legal-content">
-                <p>Date de la dernière mise à jour : **15 novembre 2025**</p>
+                <p>Date de mise à jour : **15 novembre 2025**</p>
                 
-                <h2>Article 1. Objet</h2>
-                <p>Les présentes CGU régissent l'utilisation du site "Point Zéro". En accédant à ce site, vous acceptez sans réserve les présentes CGU.</p>
+                <h2>1. Qui peut utiliser Point Zéro ?</h2>
+                <h3>1.1 Âge et Accès</h3>
+                <p>Le site est accessible à toute personne ayant un accès à Internet. Si vous avez moins de **[À COMPLÉTER : 15 ans ou 18 ans, selon les lois de votre juridiction]**, vous devez obtenir l'autorisation de vos parents ou de votre tuteur légal pour créer un compte ou utiliser certaines fonctionnalités interactives. L'accès au contenu éditorial est libre pour tous.</p>
 
-                <h2>Article 2. Accès et Services</h2>
-                <p>Le site est accessible gratuitement en tout lieu à tout utilisateur ayant un accès à Internet. Les coûts d’accès sont à la charge de l’utilisateur.</p>
-                <p>Le site "Point Zéro" fournit des informations et du contenu éditorial. **[À COMPLÉTER : Précisez ici si des services spécifiques (forums, commentaires, espace membre) sont soumis à des règles supplémentaires].**</p>
-                
-                <h2>Article 3. Propriété Intellectuelle</h2>
-                <p>La marque "Point Zéro", ainsi que tous les articles, logos, et éléments graphiques du site sont protégés par le droit d'auteur. Toute reproduction, modification, ou publication de ces différents éléments est strictement interdite sans l'accord écrit préalable de l'Éditeur.</p>
+                <h3>1.2 Gratuité</h3>
+                <p>L'accès à nos articles et à l'ensemble du contenu éditorial est **totalement gratuit**. Les coûts d'accès à Internet restent, bien sûr, à votre charge.</p>
 
-                <h2>Article 4. Obligations de l'Utilisateur</h2>
-                <p>L'utilisateur s'engage à utiliser le site de manière responsable et à ne pas perturber l'accès aux autres utilisateurs. **[À COMPLÉTER : Détaillez les règles de conduite spécifiques (ex: interdiction de contenu illégal dans les commentaires, respect des autres membres, etc.)].**</p>
+                <h2>2. Ce que vous pouvez faire (et ne pas faire)</h2>
+                <h3>2.1 Respect et Communauté</h3>
+                <p>Point Zéro est un espace d'échange respectueux. Vous vous engagez à :</p>
+                <ul>
+                    <li>Ne pas publier de contenu illégal, diffamatoire, violent, discriminatoire, haineux, ou pornographique.</li>
+                    <li>Ne pas harceler, insulter ou menacer d'autres utilisateurs ou l'équipe de Point Zéro.</li>
+                    <li>Ne pas utiliser d'outils automatiques pour perturber le site (spam, bots malveillants, etc.).</li>
+                </ul>
+                <p>**En bref : Soyez cool. Le non-respect de ces règles peut entraîner la suspension ou la suppression de votre compte.**</p>
                 
-                <h2>Article 5. Responsabilité et Limitation de Garantie</h2>
-                <p>Les sources des informations diffusées sur le site sont réputées fiables, mais le site ne garantit pas qu'il soit exempt de défauts, d'erreurs ou d'omissions. L'Éditeur ne saurait être tenu pour responsable de tout dommage, direct ou indirect, résultant de l'utilisation du site.</p>
+                <h2>3. Notre Contenu : Il est à nous !</h2>
+                <h3>3.1 Propriété Intellectuelle</h3>
+                <p>Tous les articles, analyses, designs, logos, et le code du site "Point Zéro" nous appartiennent (ou à nos partenaires). Vous pouvez partager nos articles via les réseaux sociaux (partage légal) mais vous n'avez pas le droit de copier, reproduire ou modifier notre contenu sans notre autorisation écrite.</p>
                 
-                <h2>Article 6. Droit Applicable et Juridiction Compétente</h2>
-                <p>Les présentes CGU sont soumises à la loi française. Tout litige en lien avec l'utilisation du site sera soumis à la compétence exclusive des tribunaux de **[À COMPLÉTER : VOTRE VILLE/JURIDICTION COMPÉTENTE]**.</p>
+                <h2>4. Nos Responsabilités (et les Vôtres)</h2>
+                <h3>4.1 Précision de l'Information</h3>
+                <p>Nous faisons de notre mieux pour que les informations sur Point Zéro soient exactes, mais ce ne sont pas des conseils professionnels garantis (que ce soit pour les études, l'argent ou le bien-être). Nous déclinons toute responsabilité en cas d'erreur ou d'omission. **Lisez, informez-vous, mais vérifiez auprès d'experts si c'est une décision importante !**</p>
+
+                <h3>4.2 Responsabilité de l'Utilisateur</h3>
+                <p>Vous êtes entièrement responsable de l'utilisation de votre compte et des informations que vous y publiez (commentaires, etc.). Protégez bien votre mot de passe.</p>
+                
+                <h2>5. Modifications des Règles</h2>
+                <p>Les règles changent, et notre site aussi. Nous nous réservons le droit de modifier ces CGU à tout moment. Si un changement important survient, nous ferons notre possible pour vous en informer. Continuer d'utiliser Point Zéro après une modification signifie que vous acceptez les nouvelles règles.</p>
+                
+                <h2>6. Questions et Droit Applicable</h2>
+                <p>Si vous avez des questions sur ces règles, contactez-nous via l'email de contact présent dans les Mentions Légales.</p>
+                <p>Ces règles sont soumises à la loi française. Tout litige sera traité par les tribunaux de **[À COMPLÉTER : VOTRE VILLE/JURIDICTION COMPÉTENTE]**.</p>
             </div>
         </div>
     </section>
@@ -68,6 +368,7 @@
     </footer>
 
     <script>
+        // Script pour l'animation du header au scroll
         window.addEventListener('scroll', function() {
             const header = document.querySelector('.main-header');
             if (window.scrollY > 50) {
