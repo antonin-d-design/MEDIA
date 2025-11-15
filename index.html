@@ -332,6 +332,57 @@
             color: #ccc;
         }
         
+        /* --- COOKIE BANNER STYLE --- */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(var(--dark-grey), 0.95); /* Fond sombre et légèrement transparent */
+            color: var(--white);
+            padding: 15px 20px;
+            text-align: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 2000; /* Assure qu'il est au-dessus de tout */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            transform: translateY(0);
+            transition: transform 0.5s ease-out;
+        }
+
+        .cookie-banner.hidden {
+            transform: translateY(100%);
+        }
+
+        .cookie-banner p {
+            margin: 0;
+            font-size: 0.95em;
+        }
+
+        .cookie-banner a {
+            color: var(--primary-orange);
+            font-weight: 600;
+            text-decoration: underline;
+        }
+        
+        .btn-accept-cookie {
+            background: var(--primary-orange);
+            color: var(--white);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            white-space: nowrap; /* Empêche le bouton de se casser sur plusieurs lignes */
+        }
+
+        .btn-accept-cookie:hover {
+            background: var(--light-orange);
+        }
+        
         /* --- Media Queries pour la responsivité (non demandée mais bonne pratique) --- */
         @media (max-width: 900px) {
             .nav-left {
@@ -349,6 +400,16 @@
             }
             .hero h1 {
                 font-size: 3em;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .cookie-banner {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .cookie-banner p {
+                font-size: 0.9em;
             }
         }
 
@@ -483,12 +544,15 @@
                 <a href="mentionlegal.html">Mentions Légales</a>
                 <a href="cgu.html">Conditions Générales d'Utilisation (CGU)</a>
                 <a href="confidentialite.html">Politique de Confidentialité</a>
-                <a href="cgv.html">Conditions Générales de Vente (CGV)</a>
-            </div>
+                </div>
             <p>&copy; 2025 Point Zéro. Le média 100% jeunesse. Tous droits réservés.</p>
         </div>
     </footer>
-
+    
+    <div id="cookieBanner" class="cookie-banner">
+        <p>Ce site utilise des cookies pour améliorer votre navigation. En cliquant sur "J'accepte", vous consentez à leur utilisation. Consultez notre <a href="confidentialite.html">Politique de Confidentialité</a> pour plus de détails.</p>
+        <button id="acceptCookies" class="btn-accept-cookie">J'accepte</button>
+    </div>
     <script>
         // Script pour l'animation du header au scroll
         window.addEventListener('scroll', function() {
@@ -498,6 +562,41 @@
             } else {
                 header.classList.remove('scrolled');
             }
+        });
+        
+        // Script pour la gestion du bandeau de cookies
+        document.addEventListener('DOMContentLoaded', function() {
+            const cookieBanner = document.getElementById('cookieBanner');
+            const acceptButton = document.getElementById('acceptCookies');
+            const COOKIE_NAME = 'cookies_accepted_pz';
+
+            // Fonction pour vérifier si le cookie d'acceptation existe
+            function checkCookie() {
+                return document.cookie.includes(COOKIE_NAME + '=true');
+            }
+
+            // Fonction pour définir le cookie d'acceptation
+            function setCookie(name, value, days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                const expires = "expires=" + date.toUTCString();
+                document.cookie = name + "=" + value + ";" + expires + ";path=/;SameSite=Lax";
+            }
+
+            // Si le cookie n'existe pas, afficher la bannière
+            if (!checkCookie()) {
+                cookieBanner.classList.remove('hidden');
+            } else {
+                 cookieBanner.classList.add('hidden');
+            }
+
+            // Gérer le clic sur le bouton "J'accepte"
+            acceptButton.addEventListener('click', function() {
+                setCookie(COOKIE_NAME, 'true', 365); // Conserver le consentement pendant 1 an
+                cookieBanner.classList.add('hidden');
+                // Optionnel: Ajouter un délai pour l'animation de masquage
+                setTimeout(() => { cookieBanner.style.display = 'none'; }, 500);
+            });
         });
     </script>
 
