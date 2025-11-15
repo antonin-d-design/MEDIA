@@ -74,20 +74,20 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        /* CHANGEMENT MAJEUR : Utilisation de space-between pour pousser les groupes */
+        /* CORRECTION : Utilisation de space-between pour séparer les deux groupes aux extrémités */
         .navbar {
             display: flex;
-            /* ALIGNEMENT : Pousse le groupe de gauche et le groupe de droite aux extrémités */
             justify-content: space-between; 
             align-items: center;
-            gap: 40px; 
         }
 
-        /* Conteneur pour le logo et les liens de navigation (Groupe de gauche) */
+        /* NOUVEAU CONTENEUR POUR LE GROUPE DE GAUCHE (Logo + Liens) */
         .nav-left {
             display: flex;
             align-items: center;
             gap: 40px; /* Espace entre le logo et les liens */
+            /* Assure que ce groupe est à l'extrême gauche */
+            margin-right: auto; 
         }
 
         /* Styles du Logo Point Zéro */
@@ -142,6 +142,8 @@
         .auth-buttons {
             display: flex;
             gap: 15px;
+            /* Assure que ce groupe est à l'extrême droite */
+            margin-left: auto;
         }
 
         .btn-auth {
@@ -215,21 +217,19 @@
             z-index: 2;
         }
 
-        /* CHANGEMENT : Titre plus impactant */
         .hero h1 {
             font-family: 'Poppins', sans-serif;
             font-size: 3.5em;
             margin-bottom: 20px;
             color: var(--dark-grey);
             animation: slideInTop 1s ease-out;
-            font-weight: 800; /* Plus de punch pour le titre */
+            font-weight: 800; 
         }
 
         .hero h1 span {
             color: var(--primary-orange);
         }
 
-        /* CHANGEMENT : Sous-titre ciblant clairement les jeunes */
         .hero p {
             font-size: 1.3em;
             color: var(--medium-grey);
@@ -258,39 +258,165 @@
             animation: none;
         }
 
-        /* Le reste des styles (articles-section, footer, animations...) reste inchangé */
-        /* ... (Les autres styles sont omis ici pour la concision, mais sont dans le code complet ci-dessous) */
+        /* --- Sections d'Articles (Rétablissement) --- */
+        .articles-section {
+            padding: 80px 0;
+            background: var(--bg-color);
+        }
+
+        .articles-grid {
+            display: grid;
+            /* Affichage côte à côte sur les grands écrans */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
         
+        .article-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            /* Animation "stylée" au survol */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .article-card:hover {
+            transform: translateY(-8px) rotateZ(-0.5deg); /* Petit décalage et rotation pour le style */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .article-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .article-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .article-content {
+            padding: 25px;
+        }
+
+        .article-content h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: var(--dark-grey);
+        }
+
+        .article-content p {
+            font-size: 0.95em;
+            color: var(--medium-grey);
+            margin-bottom: 15px;
+        }
+
+        .article-content .meta {
+            font-size: 0.8em;
+            color: #999;
+        }
+
+        .article-content .meta span {
+            margin-right: 15px;
+        }
+
+        .article-content .meta span i {
+            margin-right: 5px;
+            color: var(--primary-orange);
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            background: var(--dark-grey);
+            color: var(--light-grey);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .main-footer .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .main-footer .footer-links a {
+            color: var(--light-grey);
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .main-footer .footer-links a:hover {
+            color: var(--primary-orange);
+        }
+
+        .main-footer p {
+            font-size: 0.9em;
+            color: #aaa;
+        }
+
+        /* --- Animations Keyframes (Inchangés) --- */
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 1; }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes slideInTop {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3); }
+            50% { transform: scale(1.02); box-shadow: 0 8px 20px rgba(255, 107, 0, 0.45); }
+            100% { transform: scale(1); box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3); }
+        }
+
+        @keyframes floatShape {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(20px, 20px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* Délai d'apparition des 3 cartes */
+        .article-card:nth-child(1) { animation-delay: 0.1s; }
+        .article-card:nth-child(2) { animation-delay: 0.2s; }
+        .article-card:nth-child(3) { animation-delay: 0.3s; }
+        
+        @keyframes fadeInUp {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
         /* --- Media Queries pour le Responsive Design --- */
-        /* Les styles Responsives sont ajustés pour maintenir la logique d'alignement */
         @media (max-width: 900px) {
             .navbar {
-                flex-wrap: wrap;
-                justify-content: center;
+                flex-direction: column; /* Empile les éléments sur mobile */
                 gap: 20px;
             }
             
-            /* S'assurer que le logo et les liens restent ensemble à gauche (ou au centre sur mobile) */
-            .nav-left {
+            .nav-left, .auth-buttons {
                 width: 100%;
-                justify-content: space-between; /* Pour que le logo et les liens soient séparés mais sur la même ligne */
+                justify-content: space-between; 
             }
 
             .nav-links {
-                order: 3; 
+                justify-content: space-around;
                 width: 100%;
-                justify-content: center;
-                margin-right: 0;
-            }
-            
-            .auth-buttons {
-                order: 2;
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .logo {
-                order: 1;
             }
 
             .hero h1 {
@@ -320,7 +446,7 @@
 
                 <div class="auth-buttons">
                     <a href="#" class="btn-auth btn-connect">Connexion</a>
-                    <a href="#" class="btn-auth btn-signup">Créer ton Compte</a>
+                    <a href="#" class="btn-auth btn-signup">Créer un Compte</a>
                 </div>
             </nav>
         </div>
@@ -336,7 +462,7 @@
 
     <section id="articles" class="articles-section">
         <div class="container">
-            <h2 style="text-align: center; font-size: 2.5em; margin-bottom: 60px; color: var(--dark-grey); font-family: 'Poppins', sans-serif;">Tes sujets, nos analyses.</h2>
+            <h2 style="text-align: center; font-size: 2.5em; margin-bottom: 60px; color: var(--dark-grey); font-family: 'Poppins', sans-serif;">Dernières Actus. 🔥</h2>
             <div class="articles-grid">
                 
                 <div class="article-card">
@@ -402,6 +528,7 @@
 
 </body>
 </html>
+
 
 
 
